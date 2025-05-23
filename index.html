@@ -16,7 +16,7 @@
             --secondary-color: #56C5C5; /* Eduvators Teal/Cyan */
             --accent-color: #D83A7B;   /* Eduvators Magenta/Pink */
             --text-color: #333;
-            --bg-color: #f4f6f8; /* Slightly adjusted for new theme */
+            --bg-color: #f4f6f8; 
             --card-bg: #ffffff;
             --shadow: 0 2px 10px rgba(0,0,0,0.1);
             --light-text-on-dark: #FFFFFF;
@@ -62,7 +62,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        .logo div div:first-child { /* Eduvators name */
+        .logo div div:first-child { 
              color: var(--light-text-on-dark);
         }
 
@@ -108,7 +108,7 @@
 
         .search-group {
             flex: 1;
-            min-width: 200px; 
+            min-width: 180px; /* Adjusted for potentially 4 inputs */
         }
 
         label {
@@ -135,7 +135,7 @@
         
         .search-container button {
             background-color: var(--accent-color);
-            color: var(--light-text-on-dark); /* White text on magenta */
+            color: var(--light-text-on-dark);
             border: none;
             padding: 0.85rem 2rem; 
             border-radius: 5px;
@@ -149,7 +149,7 @@
         }
 
         .search-container button:hover {
-            background-color: #c0392b; /* Darker magenta/red */
+            background-color: #c0392b; 
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
@@ -157,7 +157,7 @@
 
         .filters {
             padding: 1rem 0;
-            background-color: #f0f4f7; /* Lightened bg for contrast with new primary */
+            background-color: #f0f4f7; 
             border-bottom: 1px solid #e0e0e0;
         }
         
@@ -171,7 +171,7 @@
         .filters .container > div > span {
             font-weight: 500;
             margin-right: 0.5rem;
-            color: var(--primary-color); /* Darker text for filter label */
+            color: var(--primary-color); 
         }
 
 
@@ -373,11 +373,11 @@
             margin-top: 3rem;
         }
          footer a {
-            color: var(--secondary-color); /* Teal link in footer */
+            color: var(--secondary-color); 
             text-decoration: none;
         }
         footer a:hover, footer a:focus {
-            color: var(--accent-color); /* Magenta on hover */
+            color: var(--accent-color); 
             text-decoration: underline;
         }
 
@@ -460,6 +460,13 @@
                             <span id="location-hint" class="sr-only">Enter a city, region, or institution name in California</span>
                         </div>
                         <div class="search-group">
+                            <label for="county">County</label>
+                            <select id="county" aria-describedby="county-hint">
+                                <option value="">All Counties</option>
+                                </select>
+                            <span id="county-hint" class="sr-only">Select the county</span>
+                        </div>
+                        <div class="search-group">
                             <label for="program-type">Program Type</label>
                             <select id="program-type" aria-describedby="type-hint">
                                 <option value="">All Types</option>
@@ -540,14 +547,14 @@
             // Eduvators Team Certifications
             {
                 id: 13, title: "Student-Centered AI Leader Certification", institution: "Eduvators Team", type: "certificate", level: "professional",
-                location: "Online", duration: "13 Lessons", price: "$99.95", format: "Online",
+                location: "Online", duration: "13 Lessons", price: "$99.95", format: "Online", county: "Online",
                 description: "Become a leader in AI-driven education. Focuses on student-centered AI strategies and implementation.",
                 forEducators: true, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 5.0, featured: true, onlineOnly: true,
                 url: "https://www.eduvators.net/all-products/?category=3773", category: "Professional Development"
             },
             {
                 id: 14, title: "AI Fundamentals for Educators and Content Creators Certification", institution: "Eduvators Team", type: "certificate", level: "beginner",
-                location: "Online", duration: "7 Lessons", price: "$99.95", format: "Online",
+                location: "Online", duration: "7 Lessons", price: "$99.95", format: "Online", county: "Online",
                 description: "Master AI basics for creating engaging educational content and enhancing teaching practices.",
                 forEducators: true, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.9, featured: true, onlineOnly: true,
                 url: "https://www.eduvators.net/all-products/?category=3773", category: "Professional Development"
@@ -556,126 +563,126 @@
             // --- Research Universities ---
             {
                 id: 31, title: "Artificial Intelligence Courses and Programs", institution: "Stanford University", type: "courses", level: "various",
-                location: "Stanford & Online", duration: "Varies", price: "Varies", format: "Hybrid",
+                location: "Stanford", duration: "Varies", price: "Varies", format: "Hybrid", county: "Santa Clara County",
                 description: "A collection of AI courses and programs offered through Stanford, including professional education.",
                 url: "https://online.stanford.edu/artificial-intelligence/courses-and-programs", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.9, onlineOnly: false, featured: false
             },
             {
                 id: 32, title: "Artificial Intelligence Professional Program", institution: "Stanford University", type: "certificate", level: "professional",
-                location: "Online", duration: "Varies", price: "Varies per course", format: "Online",
+                location: "Online", duration: "Varies", price: "Varies per course", format: "Online", county: "Online",
                 description: "Professional program for developing expertise in AI, offered by Stanford Online.",
                 url: "https://online.stanford.edu/programs/artificial-intelligence-professional-program", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.8, onlineOnly: true, featured: false
             },
             {
                 id: 33, title: "Graduate Certificate in Artificial Intelligence", institution: "Stanford University", type: "certificate", level: "graduate",
-                location: "Online", duration: "Varies (Approx 1-2 Years)", price: "Varies per course", format: "Online",
+                location: "Online", duration: "Varies (Approx 1-2 Years)", price: "Varies per course", format: "Online", county: "Online",
                 description: "Graduate-level certificate program in AI, delivered online.",
                 url: "https://online.stanford.edu/programs/artificial-intelligence-graduate-certificate", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.8, onlineOnly: true, featured: false
             },
             {
                 id: 34, title: "Artificial Intelligence at Berkeley", institution: "University of California, Berkeley", type: "overview", level: "various",
-                location: "Berkeley", duration: "Varies", price: "Check Website", format: "In-person",
+                location: "Berkeley", duration: "Varies", price: "Check Website", format: "In-person", county: "Alameda County",
                 description: "Overview of AI research, courses, and initiatives at UC Berkeley.",
                 url: "https://www.berkeley.edu/ai/", category: "Research Universities",
                 forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.9, onlineOnly: false, featured: false
             },
             {
                 id: 35, title: "Professional Certificate in Machine Learning & AI", institution: "University of California, Berkeley", type: "certificate", level: "professional",
-                location: "Online", duration: "Approx. 6 Months", price: "Check Website", format: "Online",
+                location: "Online", duration: "Approx. 6 Months", price: "Check Website", format: "Online", county: "Online",
                 description: "Online certificate from Berkeley Executive Education focusing on ML and AI for professionals.",
                 url: "https://em-executive.berkeley.edu/professional-certificate-machine-learning-artificial-intelligence", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.7, onlineOnly: true, featured: false
             },
             {
                 id: 36, title: "Artificial Intelligence: Business Strategies", institution: "University of California, Berkeley", type: "workshop", level: "professional",
-                location: "Online", duration: "Approx. 2 Months", price: "Check Website", format: "Online",
+                location: "Online", duration: "Approx. 2 Months", price: "Check Website", format: "Online", county: "Online",
                 description: "Program from Berkeley Executive Education designed to help business leaders understand and leverage AI.",
                 url: "https://em-executive.berkeley.edu/artificial-intelligence-business-strategies", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.6, onlineOnly: true, featured: false
             },
             {
                 id: 37, title: "MS in Computer Science (Artificial Intelligence)", institution: "University of Southern California (USC)", type: "degree", level: "graduate",
-                location: "Los Angeles", duration: "Approx. 2 Years", price: "Check Website", format: "In-person",
+                location: "Los Angeles", duration: "Approx. 2 Years", price: "Check Website", format: "In-person", county: "Los Angeles County",
                 description: "Specialized Master's program in AI from the Viterbi School of Engineering.",
                 url: "https://viterbigradadmission.usc.edu/programs/masters/msprograms/computer-science/ms-computer-science-artificial-intelligence/", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: false, rating: 4.8, onlineOnly: false, featured: false
             },
             {
                 id: 38, title: "AI@USC Overview", institution: "University of Southern California (USC)", type: "overview", level: "various",
-                location: "Los Angeles", duration: "Varies", price: "Check Website", format: "In-person",
+                location: "Los Angeles", duration: "Varies", price: "Check Website", format: "In-person", county: "Los Angeles County",
                 description: "Overview of AI research, initiatives and academic programs at USC.",
                 url: "https://ai.usc.edu/ai-at-usc/", category: "Research Universities",
                 forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.8, onlineOnly: false, featured: false
             },
             {
                 id: 39, title: "B.S. in Artificial Intelligence", institution: "University of California, San Diego (UCSD)", type: "degree", level: "undergraduate",
-                location: "La Jolla", duration: "4 Years", price: "Check Website", format: "In-person",
+                location: "La Jolla", duration: "4 Years", price: "Check Website", format: "In-person", county: "San Diego County",
                 description: "Dedicated undergraduate degree in Artificial Intelligence from the CSE department.",
                 url: "https://cse.ucsd.edu/undergraduate/bs-artificial-intelligence-0", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: false, rating: 4.8, onlineOnly: false, featured: false
             },
             {
                 id: 40, title: "Technical Aspects of AI Certificate", institution: "University of California, San Diego (UCSD)", type: "certificate", level: "professional",
-                location: "Online", duration: "Varies", price: "Check Website", format: "Online",
+                location: "Online", duration: "Varies", price: "Check Website", format: "Online", county: "Online",
                 description: "Certificate from UCSD Extended Studies covering technical AI concepts.",
                 url: "https://extendedstudies.ucsd.edu/certificates/technical-aspects-of-artificial-intelligence", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.6, onlineOnly: true, featured: false
             },
             {
                 id: 41, title: "Artificial Intelligence for Finance", institution: "University of California, San Diego (UCSD)", type: "courses", level: "professional",
-                location: "Online", duration: "Varies", price: "Check Website", format: "Online",
+                location: "Online", duration: "Varies", price: "Check Website", format: "Online", county: "Online",
                 description: "Course from UCSD Extended Studies focusing on AI applications in the finance industry.",
                 url: "https://extendedstudies.ucsd.edu/courses-and-programs/artificial-intelligence-for-finance-cse-41349", category: "Research Universities",
                 forEducators: false, hasCertification: false, remoteAvailable: true, eveningClasses: true, rating: 4.5, onlineOnly: true, featured: false
             },
             {
                 id: 42, title: "AI/ML Research Areas", institution: "University of California, Irvine (UCI)", type: "overview", level: "various",
-                location: "Irvine", duration: "Varies", price: "Check Website", format: "In-person",
+                location: "Irvine", duration: "Varies", price: "Check Website", format: "In-person", county: "Orange County",
                 description: "Overview of UCI's research areas in AI, ML, and NLP, leading to faculty and labs.",
                 url: "https://ics.uci.edu/research-areas/ai-ml-and-natural-language-processing/", category: "Research Universities",
                 forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.7, onlineOnly: false, featured: false
             },
             {
                 id: 43, title: "M.Ed. in Education Sciences (AI & Learning Analytics)", institution: "University of California, Irvine (UCI)", type: "degree", level: "graduate",
-                location: "Irvine & Online", duration: "Approx. 2 Years", price: "Check Website", format: "Hybrid",
+                location: "Irvine & Online", duration: "Approx. 2 Years", price: "Check Website", format: "Hybrid", county: ["Orange County", "Online"],
                 description: "Master's program focusing on AI applications in education and learning analytics.",
                 url: "https://education.uci.edu/mes_home", category: "Research Universities",
                 forEducators: true, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.6, onlineOnly: false, featured: false
             },
             {
                 id: 44, title: "Machine and Deep Learning Certificate", institution: "University of California, Irvine (UCI)", type: "certificate", level: "professional",
-                location: "Online", duration: "Varies", price: "Check Website", format: "Online",
+                location: "Online", duration: "Varies", price: "Check Website", format: "Online", county: "Online",
                 description: "Continuing education certificate program focusing on machine learning and deep learning.",
                 url: "https://ce.uci.edu/programs/technology/machine-and-deep-learning/", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.5, onlineOnly: true, featured: false
             },
             {
                 id: 45, title: "UCSC Generative AI Center", institution: "University of California, Santa Cruz (UCSC)", type: "center", level: "various",
-                location: "Santa Cruz", duration: "N/A (Research)", price: "N/A", format: "In-person",
+                location: "Santa Cruz", duration: "N/A (Research)", price: "N/A", format: "In-person", county: "Santa Cruz County",
                 description: "Research center focused on Generative AI at UCSC.",
                 url: "https://genai.ucsc.edu/", category: "Research Universities",
                 forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.6, onlineOnly: false, featured: false
             },
             {
                 id: 46, title: "Humanizing Technology Certificate (Ethical AI, HCI, NLP)", institution: "University of California, Santa Cruz (UCSC)", type: "certificate", level: "professional",
-                location: "Online & Silicon Valley", duration: "Varies", price: "Check Website", format: "Hybrid",
+                location: "Online & Silicon Valley", duration: "Varies", price: "Check Website", format: "Hybrid", county: ["Santa Cruz County", "Santa Clara County", "Online"],
                 description: "Certificate program focusing on the ethical and human aspects of technology, including AI, HCI, and NLP.",
                 url: "https://humanities.ucsc.edu/academics/hum-tech.html", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.5, onlineOnly: false, featured: false
             },
             {
                 id: 47, title: "AI Research at UCSF", institution: "University of California, San Francisco (UCSF)", type: "overview", level: "various",
-                location: "San Francisco", duration: "N/A (Research)", price: "N/A", format: "In-person",
+                location: "San Francisco", duration: "N/A (Research)", price: "N/A", format: "In-person", county: "San Francisco County",
                 description: "Overview of AI initiatives and research in health sciences at UCSF.",
                 url: "https://ai.ucsf.edu/", category: "Research Universities",
                 forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.9, onlineOnly: false, featured: false
             },
             {
                 id: 48, title: "M.S. in Artificial Intelligence and Computational Drug Discovery and Development (AICD3)", institution: "University of California, San Francisco (UCSF)", type: "degree", level: "graduate",
-                location: "San Francisco", duration: "1 Year", price: "Check Website", format: "In-person",
+                location: "San Francisco", duration: "1 Year", price: "Check Website", format: "In-person", county: "San Francisco County",
                 description: "Master's program applying AI techniques to drug discovery and development.",
                 url: "https://pharm.ucsf.edu/aicd3", category: "Research Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: false, rating: 4.9, onlineOnly: false, featured: false
@@ -684,35 +691,35 @@
             // --- California State Universities ---
             {
                 id: 49, title: "M.S. in Artificial Intelligence Program Overview", institution: "San José State University (SJSU)", type: "degree", level: "graduate",
-                location: "San Jose", duration: "Approx. 2 Years", price: "Check Website", format: "In-person",
+                location: "San Jose", duration: "Approx. 2 Years", price: "Check Website", format: "In-person", county: "Santa Clara County",
                 description: "Overview of the Master of Science program in Artificial Intelligence offered by SJSU Professional Education.",
                 url: "https://www.sjsu.edu/professional/programs/artificial-intelligence-ms.php", category: "California State Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: true, rating: 4.6, onlineOnly: false, featured: false
             },
             {
                 id: 50, title: "Official Program Catalog Entry (MS AI SJSU)", institution: "San José State University (SJSU)", type: "degree", level: "graduate",
-                location: "San Jose", duration: "Approx. 2 Years", price: "Check Website", format: "In-person",
+                location: "San Jose", duration: "Approx. 2 Years", price: "Check Website", format: "In-person", county: "Santa Clara County",
                 description: "Official catalog entry for the MS in Artificial Intelligence program at SJSU.",
                 url: "https://catalog.sjsu.edu/preview_program.php?catoid=17&poid=14074", category: "California State Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: true, rating: 4.6, onlineOnly: false, featured: false
             },
             {
                 id: 51, title: "M.S. in Data Science and Artificial Intelligence", institution: "San Francisco State University (SFSU)", type: "degree", level: "graduate",
-                location: "San Francisco", duration: "Approx. 2 Years", price: "Check Website", format: "In-person",
+                location: "San Francisco", duration: "Approx. 2 Years", price: "Check Website", format: "In-person", county: "San Francisco County",
                 description: "Master's program combining data science principles with AI techniques.",
                 url: "https://bulletin.sfsu.edu/colleges/science-engineering/computer-science/ms-data-science-artificial-intelligence/", category: "California State Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: true, rating: 4.5, onlineOnly: false, featured: false
             },
             {
                 id: 52, title: "AI/ML Course Offerings", institution: "San Francisco State University (SFSU)", type: "courses", level: "various",
-                location: "San Francisco", duration: "Varies per course", price: "Check Website", format: "In-person",
+                location: "San Francisco", duration: "Varies per course", price: "Check Website", format: "In-person", county: "San Francisco County",
                 description: "Information on AI/ML courses offered within SFSU's computer science department.",
                 url: "https://cs.sfsu.edu/artificial-intelligencemachine-learning", category: "California State Universities",
                 forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: true, rating: 4.4, onlineOnly: false, featured: false
             },
             {
                 id: 53, title: "Graduate Certificate in Ethical AI", institution: "San Francisco State University (SFSU)", type: "certificate", level: "graduate",
-                location: "San Francisco & Online", duration: "Varies", price: "Check Website", format: "Hybrid",
+                location: "San Francisco & Online", duration: "Varies", price: "Check Website", format: "Hybrid", county: ["San Francisco County", "Online"],
                 description: "Graduate certificate focusing on the ethical considerations and implications of AI.",
                 url: "https://philosophy.sfsu.edu/graduate-certificate", category: "California State Universities",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.5, onlineOnly: false, featured: false
@@ -721,42 +728,42 @@
             // --- Private Institutions ---
             {
                 id: 54, title: "Overview of AI Programs (CIAT)", institution: "California Institute of Applied Technology (CIAT)", type: "courses", level: "professional", 
-                location: "Online & Various CA", duration: "Varies", price: "Check Website", format: "Hybrid",
+                location: "Online & Various CA", duration: "Varies", price: "Check Website", format: "Hybrid", county: ["San Diego County", "Riverside County", "Online"], // Example counties for CIAT
                 description: "CIAT offers various programs focusing on AI, including degree and certificate options.",
                 url: "https://www.ciat.edu/programs/artificial-intelligence", category: "Private Institutions",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.3, onlineOnly: false, featured: false
             },
             {
                 id: 55, title: "Certificate in AI and Machine Learning (CIAT)", institution: "California Institute of Applied Technology (CIAT)", type: "certificate", level: "professional",
-                location: "Online & Various CA", duration: "Varies", price: "Check Website", format: "Hybrid",
+                location: "Online & Various CA", duration: "Varies", price: "Check Website", format: "Hybrid", county: ["San Diego County", "Riverside County", "Online"],
                 description: "Certificate program focused on AI and Machine Learning skills.",
                 url: "https://www.ciat.edu/programs/artificial-intelligence/caiml", category: "Private Institutions",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.3, onlineOnly: false, featured: false
             },
             {
                 id: 56, title: "M.S. in Artificial Intelligence (CMU)", institution: "California Miramar University", type: "degree", level: "graduate",
-                location: "San Diego & Online", duration: "Approx. 18-24 Months", price: "Check Website", format: "Hybrid",
+                location: "San Diego & Online", duration: "Approx. 18-24 Months", price: "Check Website", format: "Hybrid", county: ["San Diego County", "Online"],
                 description: "Master's degree program focused on Artificial Intelligence principles and applications.",
                 url: "https://www.calmu.edu/master-of-artificial-intelligence", category: "Private Institutions",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.2, onlineOnly: false, featured: false
             },
             {
                 id: 57, title: "B.S. in Business Administration – AI Concentration (CMU)", institution: "California Miramar University", type: "degree", level: "undergraduate",
-                location: "San Diego & Online", duration: "4 Years", price: "Check Website", format: "Hybrid",
+                location: "San Diego & Online", duration: "4 Years", price: "Check Website", format: "Hybrid", county: ["San Diego County", "Online"],
                 description: "BSBA program with a specialization in Artificial Intelligence.",
                 url: "https://www.calmu.edu/bachelor-of-science-in-business-administration-artificial-intelligence", category: "Private Institutions",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.1, onlineOnly: false, featured: false
             },
             {
                 id: 58, title: "Short-Term Certificate in Artificial Intelligence (CMU)", institution: "California Miramar University", type: "certificate", level: "professional",
-                location: "Online", duration: "Varies (Short-term)", price: "Check Website", format: "Online",
+                location: "Online", duration: "Varies (Short-term)", price: "Check Website", format: "Online", county: "Online",
                 description: "Short-term certificate options in AI for focused skill development.",
                 url: "https://www.calmu.edu/certificate-artificial-intelligence", category: "Private Institutions",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.0, onlineOnly: true, featured: false
             },
             {
                 id: 59, title: "Emerging Technologies – AI & Cybersecurity Program (CSTU)", institution: "California Science and Technology University (CSTU)", type: "courses", level: "professional",
-                location: "Milpitas & Online", duration: "Varies", price: "Check Website", format: "Hybrid",
+                location: "Milpitas & Online", duration: "Varies", price: "Check Website", format: "Hybrid", county: ["Santa Clara County", "Online"],
                 description: "Training programs in emerging technologies, including AI and Cybersecurity related topics.",
                 url: "https://www.cstu.edu/pages/index/courses/et.html?v=f31afab496", category: "Private Institutions",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.1, onlineOnly: false, featured: false
@@ -766,28 +773,28 @@
             {
                 id: 60, title: "AI and Data Science Certificates & Degrees", institution: "Mission College", type: "certificate", 
                 level: "intermediate", 
-                location: "Santa Clara", duration: "Approx. 1-2 Years", price: "$46/unit (CA Resident)", format: "Hybrid",
+                location: "Santa Clara", duration: "Approx. 1-2 Years", price: "$46/unit (CA Resident)", format: "Hybrid", county: "Santa Clara County",
                 description: "Offers certificates and degrees in AI and Data Science.",
                 url: "https://missioncollege.edu/depts/computer-science/degrees-certs-program-maps.html", category: "Community Colleges",
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.2, onlineOnly: false, featured: false
             },
             {
                 id: 61, title: "Artificial Intelligence – Course Offering in Computer Science", institution: "Santa Ana College", type: "courses", level: "various",
-                location: "Santa Ana", duration: "Varies per course", price: "$46/unit (CA Resident)", format: "In-person",
+                location: "Santa Ana", duration: "Varies per course", price: "$46/unit (CA Resident)", format: "In-person", county: "Orange County",
                 description: "Computer Science department offering various courses, including AI topics.",
                 url: "https://sac.edu/AcademicProgs/Business/ComputerScience/Pages/default.aspx", category: "Community Colleges",
                 forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: true, rating: 4.1, onlineOnly: false, featured: false
             },
             {
                 id: 62, title: "A.S. in Artificial Intelligence for Business", institution: "Mt. San Antonio College (Mt. SAC)", type: "degree", level: "undergraduate",
-                location: "Walnut", duration: "2 Years", price: "$46/unit (CA Resident)", format: "In-person",
+                location: "Walnut", duration: "2 Years", price: "$46/unit (CA Resident)", format: "In-person", county: "Los Angeles County",
                 description: "Associate of Science degree focusing on AI applications in business.",
                 url: "https://catalog.mtsac.edu/programs/programsaz/artificial-intelligence-business-degree/", category: "Community Colleges",
                 forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: true, rating: 4.3, onlineOnly: false, featured: false
             },
             {
                 id: 63, title: "Certificate in Artificial Intelligence in Business", institution: "Mt. San Antonio College (Mt. SAC)", type: "certificate", level: "intermediate",
-                location: "Walnut & Online", duration: "Approx. 1 Year", price: "$46/unit (CA Resident)", format: "Hybrid",
+                location: "Walnut & Online", duration: "Approx. 1 Year", price: "$46/unit (CA Resident)", format: "Hybrid", county: ["Los Angeles County", "Online"],
                 description: "Certificate program focusing on Artificial Intelligence concepts and applications in business.",
                 url: "https://catalog.mtsac.edu/programs/programsaz/artificial-intelligence/", category: "Community Colleges", 
                 forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.3, onlineOnly: false, featured: false
@@ -798,25 +805,78 @@
         let activeFilters = new Set();
 
         window.onload = function() {
+            populateCountyFilter();
             currentDisplayedPrograms = [...allSamplePrograms];
             document.getElementById('sort').value = 'title-asc'; 
             sortAndDisplayPrograms(currentDisplayedPrograms); 
             updateResultsCount(currentDisplayedPrograms.length);
         };
+
+        function populateCountyFilter() {
+            const countySelect = document.getElementById('county');
+            if (!countySelect) return;
+
+            const counties = new Set();
+            allSamplePrograms.forEach(program => {
+                if (program.county) {
+                    if (Array.isArray(program.county)) {
+                        program.county.forEach(c => { if (c !== "Online") counties.add(c); });
+                    } else if (program.county !== "Online") {
+                        counties.add(program.county);
+                    }
+                }
+            });
+
+            const sortedCounties = Array.from(counties).sort();
+            
+            // Add "Online" option first if applicable
+            let hasOnlinePrograms = allSamplePrograms.some(p => 
+                (Array.isArray(p.county) && p.county.includes("Online")) || p.county === "Online"
+            );
+            if (hasOnlinePrograms) {
+                 const onlineOption = document.createElement('option');
+                 onlineOption.value = "Online";
+                 onlineOption.textContent = "Online Programs";
+                 countySelect.appendChild(onlineOption);
+            }
+
+            sortedCounties.forEach(county => {
+                const option = document.createElement('option');
+                option.value = county;
+                option.textContent = county;
+                countySelect.appendChild(option);
+            });
+        }
         
         function filterAndDisplayPrograms() {
             const locationQuery = document.getElementById('location').value.toLowerCase();
             const programTypeQuery = document.getElementById('program-type').value;
             const levelQuery = document.getElementById('level').value;
+            const countyQuery = document.getElementById('county').value;
 
             let filtered = allSamplePrograms.filter(program => {
                 let matches = true;
+                // Location/Institution search (text input)
                 if (locationQuery && !(program.location.toLowerCase().includes(locationQuery) || program.institution.toLowerCase().includes(locationQuery))) {
                     matches = false;
                 }
+                // County Filter
+                if (countyQuery) {
+                    let countyMatch = false;
+                    if (Array.isArray(program.county)) {
+                        if (program.county.includes(countyQuery)) countyMatch = true;
+                    } else {
+                        if (program.county === countyQuery) countyMatch = true;
+                    }
+                    if (!countyMatch) matches = false;
+                }
+
+                // Program Type Filter
                 if (programTypeQuery && program.type !== programTypeQuery) matches = false;
+                // Level Filter
                 if (levelQuery && program.level !== levelQuery) matches = false;
 
+                // Quick Filters
                 if (activeFilters.has('educators') && !program.forEducators) matches = false;
                 if (activeFilters.has('free')) { 
                     const price = program.price.toLowerCase();
@@ -853,7 +913,7 @@
             if (typeof priceStr !== 'string') return Infinity;
             const lowerPriceStr = priceStr.toLowerCase();
             if (lowerPriceStr.includes('free')) return 0;
-            if (lowerPriceStr.includes('check website') || lowerPriceStr.includes('varies per course') || lowerPriceStr.includes('varies')) return Infinity; 
+            if (lowerPriceStr.includes('check website') || lowerPriceStr.includes('varies per course') || lowerPriceStr.includes('varies') || lowerPriceStr.includes('n/a')) return Infinity; 
 
             if (lowerPriceStr.includes('/unit')) {
                  const unitCost = parseFloat(lowerPriceStr.match(/(\d+(\.\d+)?)\s*\/unit/)?.[1]);
