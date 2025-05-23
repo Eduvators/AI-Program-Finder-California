@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduvators - Find AI Programs in California</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2A2F67; /* Eduvators Dark Blue/Purple */
+            --secondary-color: #56C5C5; /* Eduvators Teal/Cyan */
+            --accent-color: #D83A7B;   /* Eduvators Magenta/Pink */
+            --text-color: #333;
+            --bg-color: #f4f6f8; /* Slightly adjusted for new theme */
+            --card-bg: #ffffff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --light-text-on-dark: #FFFFFF;
+            --light-text-on-secondary: #FFFFFF; 
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text-on-dark);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000; 
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo div div:first-child { /* Eduvators name */
+             color: var(--light-text-on-dark);
+        }
+
+
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: var(--light-text-on-dark);
+        }
+        header nav span {
+            color: var(--light-text-on-dark);
+            opacity: 0.9;
+        }
+
+
+        .search-section {
+            background-color: var(--secondary-color);
+            color: var(--light-text-on-secondary);
+            padding: 2rem 0;
+        }
+
+        .search-container h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--light-text-on-secondary);
+        }
+
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .search-container label {
+            color: var(--light-text-on-secondary);
+        }
+
+        .search-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-group {
+            flex: 1;
+            min-width: 200px; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: white;
+            color: var(--text-color);
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid var(--accent-color); 
+            border-color: var(--accent-color);
+            outline-offset: 0;
+        }
+        
+        .search-container button {
+            background-color: var(--accent-color);
+            color: var(--light-text-on-dark); /* White text on magenta */
+            border: none;
+            padding: 0.85rem 2rem; 
+            border-radius: 5px;
+            font-size: 1.1rem; 
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            align-self: center; 
+            min-width: 200px;
+        }
+
+        .search-container button:hover {
+            background-color: #c0392b; /* Darker magenta/red */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+
+        .filters {
+            padding: 1rem 0;
+            background-color: #f0f4f7; /* Lightened bg for contrast with new primary */
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .filters .container > div {
+             display: flex;
+             gap: 0.75rem; 
+             flex-wrap: wrap;
+             align-items: center;
+             justify-content: center; 
+        }
+        .filters .container > div > span {
+            font-weight: 500;
+            margin-right: 0.5rem;
+            color: var(--primary-color); /* Darker text for filter label */
+        }
+
+
+        .chip {
+            background-color: #e0e0e0;
+            color: var(--text-color);
+            padding: 0.6rem 1.2rem; 
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .chip:hover {
+            background-color: #d0d0d0;
+            border-color: #bbb;
+        }
+
+        .chip.active {
+            background-color: var(--primary-color); 
+            color: var(--light-text-on-dark);
+            border-color: var(--primary-color);
+        }
+
+        .results-section {
+            padding: 2rem 0;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .results-count {
+            font-size: 1.3rem; 
+            font-weight: 600; 
+            color: var(--primary-color);
+        }
+
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .sort-options label {
+             margin-bottom: 0; 
+             color: var(--primary-color);
+        }
+
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); 
+            gap: 2rem; 
+            margin-bottom: 2rem;
+        }
+
+        .program-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.3s ease; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #e0e0e0; 
+        }
+
+        .program-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .program-card:focus-within { 
+            box-shadow: 0 0 0 2px var(--secondary-color), 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+
+        .program-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; 
+            margin-bottom: 0.75rem;
+        }
+        .program-header > div:first-child { 
+            flex-grow: 1;
+            margin-right: 0.5rem;
+        }
+
+        .program-title {
+            font-size: 1.3rem; 
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem; 
+        }
+
+        .program-type {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--light-text-on-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+
+        .program-institution {
+            color: #555; 
+            margin-bottom: 0.75rem;
+            font-size: 0.95em;
+        }
+
+        .program-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem; 
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .detail-item .icon {
+            color: var(--secondary-color);
+            font-size: 1.1em;
+        }
+
+        .program-description {
+            color: #555;
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+            font-size: 0.95em;
+            flex-grow: 1;
+        }
+        
+        .program-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto; 
+            padding-top: 1rem;
+            border-top: 1px solid #f0f0f0;
+        }
+        .program-footer a {
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .program-footer a:hover, .program-footer a:focus {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+
+        .program-card.featured {
+            border-left: 5px solid var(--accent-color); 
+        }
+
+        .featured-badge {
+            background-color: var(--accent-color);
+            color: var(--light-text-on-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px; 
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            grid-column: 1 / -1; 
+        }
+
+        .no-results h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text-on-dark);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+         footer a {
+            color: var(--secondary-color); /* Teal link in footer */
+            text-decoration: none;
+        }
+        footer a:hover, footer a:focus {
+            color: var(--accent-color); /* Magenta on hover */
+            text-decoration: underline;
+        }
+
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .search-container h1 { font-size: 1.8rem; }
+            .results-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .search-row {
+                flex-direction: column;
+            }
+            .search-group {
+                min-width: 100%;
+            }
+            .filters .container > div {
+                justify-content: flex-start;
+            }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        *:focus-visible { 
+            outline: 2px solid var(--accent-color);
+            outline-offset: 1px;
+        }
+        select:focus-visible, input:focus-visible, button:focus-visible, .chip:focus-visible, .program-footer a:focus-visible {
+            outline: 2px solid var(--accent-color) !important;
+            outline-offset: 2px !important;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span aria-hidden="true">🎓</span>
+                    <div>
+                        <div>Eduvators</div>
+                        <div class="tagline">AI Education Excellence</div>
+                    </div>
+                </div>
+                <nav aria-label="Main navigation">
+                    <span>California AI Program Finder</span>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="search-section" role="search" aria-label="Search for AI programs">
+            <div class="container">
+                <div class="search-container">
+                    <h1>Explore AI Programs in California</h1>
+                    <div class="search-row">
+                        <div class="search-group">
+                            <label for="location">City/Region or Institution</label>
+                            <input type="text" id="location" placeholder="e.g., Los Angeles, Stanford" aria-describedby="location-hint">
+                            <span id="location-hint" class="sr-only">Enter a city, region, or institution name in California</span>
+                        </div>
+                        <div class="search-group">
+                            <label for="program-type">Program Type</label>
+                            <select id="program-type" aria-describedby="type-hint">
+                                <option value="">All Types</option>
+                                <option value="certificate">Certificate</option>
+                                <option value="degree">Degree Program</option>
+                                <option value="courses">Courses</option>
+                                <option value="center">Research Center</option>
+                                <option value="overview">Overview/Initiative</option>
+                                <option value="bootcamp">Bootcamp</option>
+                                <option value="workshop">Workshop</option>
+                            </select>
+                            <span id="type-hint" class="sr-only">Select the type of AI program</span>
+                        </div>
+                        <div class="search-group">
+                            <label for="level">Level</label>
+                            <select id="level" aria-describedby="level-hint">
+                                <option value="">All Levels</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="professional">Professional</option>
+                                <option value="various">Various</option>
+                                <option value="general">General Overview</option>
+                            </select>
+                            <span id="level-hint" class="sr-only">Select program level</span>
+                        </div>
+                    </div>
+                    <button onclick="filterAndDisplayPrograms()" aria-label="Search for AI programs">
+                        <span aria-hidden="true">🔍</span> Search Programs
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="filters" aria-label="Filter options">
+            <div class="container">
+                <div>
+                    <span>Quick Filters:</span>
+                    <button class="chip" onclick="toggleFilter(this, 'educators')" aria-pressed="false">For Educators</button>
+                    <button class="chip" onclick="toggleFilter(this, 'free')" aria-pressed="false">Potentially Free</button>
+                    <button class="chip" onclick="toggleFilter(this, 'onlineOnly')" aria-pressed="false">Online Only</button>
+                    <button class="chip" onclick="toggleFilter(this, 'evening')" aria-pressed="false">Evening Classes</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section" aria-label="Search results">
+            <div class="container">
+                <div class="results-header">
+                    <h2 class="results-count" id="results-count">AI Programs</h2>
+                    <div class="sort-options">
+                        <label for="sort">Sort by:</label>
+                        <select id="sort" onchange="sortAndDisplayPrograms(currentDisplayedPrograms)">
+                            <option value="title-asc">Title: A-Z</option>
+                            <option value="title-desc">Title: Z-A</option>
+                            <option value="relevance">Relevance</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="duration">Duration</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="results-grid" id="results-grid" role="list">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Eduvators LLC - Empowering AI Knowledge</p>
+            <p>Questions? Contact us at <a href="mailto:contact@eduvators.net">contact@eduvators.net</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const allSamplePrograms = [
+            // Eduvators Team Certifications
+            {
+                id: 13, title: "Student-Centered AI Leader Certification", institution: "Eduvators Team", type: "certificate", level: "professional",
+                location: "Online", duration: "13 Lessons", price: "$99.95", format: "Online",
+                description: "Become a leader in AI-driven education. Focuses on student-centered AI strategies and implementation.",
+                forEducators: true, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 5.0, featured: true, onlineOnly: true,
+                url: "https://www.eduvators.net/all-products/?category=3773", category: "Professional Development"
+            },
+            {
+                id: 14, title: "AI Fundamentals for Educators and Content Creators Certification", institution: "Eduvators Team", type: "certificate", level: "beginner",
+                location: "Online", duration: "7 Lessons", price: "$99.95", format: "Online",
+                description: "Master AI basics for creating engaging educational content and enhancing teaching practices.",
+                forEducators: true, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.9, featured: true, onlineOnly: true,
+                url: "https://www.eduvators.net/all-products/?category=3773", category: "Professional Development"
+            },
+
+            // --- Research Universities ---
+            {
+                id: 31, title: "Artificial Intelligence Courses and Programs", institution: "Stanford University", type: "courses", level: "various",
+                location: "Stanford & Online", duration: "Varies", price: "Varies", format: "Hybrid",
+                description: "A collection of AI courses and programs offered through Stanford, including professional education.",
+                url: "https://online.stanford.edu/artificial-intelligence/courses-and-programs", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.9, onlineOnly: false, featured: false
+            },
+            {
+                id: 32, title: "Artificial Intelligence Professional Program", institution: "Stanford University", type: "certificate", level: "professional",
+                location: "Online", duration: "Varies", price: "Varies per course", format: "Online",
+                description: "Professional program for developing expertise in AI, offered by Stanford Online.",
+                url: "https://online.stanford.edu/programs/artificial-intelligence-professional-program", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.8, onlineOnly: true, featured: false
+            },
+            {
+                id: 33, title: "Graduate Certificate in Artificial Intelligence", institution: "Stanford University", type: "certificate", level: "graduate",
+                location: "Online", duration: "Varies (Approx 1-2 Years)", price: "Varies per course", format: "Online",
+                description: "Graduate-level certificate program in AI, delivered online.",
+                url: "https://online.stanford.edu/programs/artificial-intelligence-graduate-certificate", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.8, onlineOnly: true, featured: false
+            },
+            {
+                id: 34, title: "Artificial Intelligence at Berkeley", institution: "University of California, Berkeley", type: "overview", level: "various",
+                location: "Berkeley", duration: "Varies", price: "Check Website", format: "In-person",
+                description: "Overview of AI research, courses, and initiatives at UC Berkeley.",
+                url: "https://www.berkeley.edu/ai/", category: "Research Universities",
+                forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.9, onlineOnly: false, featured: false
+            },
+            {
+                id: 35, title: "Professional Certificate in Machine Learning & AI", institution: "University of California, Berkeley", type: "certificate", level: "professional",
+                location: "Online", duration: "Approx. 6 Months", price: "Check Website", format: "Online",
+                description: "Online certificate from Berkeley Executive Education focusing on ML and AI for professionals.",
+                url: "https://em-executive.berkeley.edu/professional-certificate-machine-learning-artificial-intelligence", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.7, onlineOnly: true, featured: false
+            },
+            {
+                id: 36, title: "Artificial Intelligence: Business Strategies", institution: "University of California, Berkeley", type: "workshop", level: "professional",
+                location: "Online", duration: "Approx. 2 Months", price: "Check Website", format: "Online",
+                description: "Program from Berkeley Executive Education designed to help business leaders understand and leverage AI.",
+                url: "https://em-executive.berkeley.edu/artificial-intelligence-business-strategies", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.6, onlineOnly: true, featured: false
+            },
+            {
+                id: 37, title: "MS in Computer Science (Artificial Intelligence)", institution: "University of Southern California (USC)", type: "degree", level: "graduate",
+                location: "Los Angeles", duration: "Approx. 2 Years", price: "Check Website", format: "In-person",
+                description: "Specialized Master's program in AI from the Viterbi School of Engineering.",
+                url: "https://viterbigradadmission.usc.edu/programs/masters/msprograms/computer-science/ms-computer-science-artificial-intelligence/", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: false, rating: 4.8, onlineOnly: false, featured: false
+            },
+            {
+                id: 38, title: "AI@USC Overview", institution: "University of Southern California (USC)", type: "overview", level: "various",
+                location: "Los Angeles", duration: "Varies", price: "Check Website", format: "In-person",
+                description: "Overview of AI research, initiatives and academic programs at USC.",
+                url: "https://ai.usc.edu/ai-at-usc/", category: "Research Universities",
+                forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.8, onlineOnly: false, featured: false
+            },
+            {
+                id: 39, title: "B.S. in Artificial Intelligence", institution: "University of California, San Diego (UCSD)", type: "degree", level: "undergraduate",
+                location: "La Jolla", duration: "4 Years", price: "Check Website", format: "In-person",
+                description: "Dedicated undergraduate degree in Artificial Intelligence from the CSE department.",
+                url: "https://cse.ucsd.edu/undergraduate/bs-artificial-intelligence-0", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: false, rating: 4.8, onlineOnly: false, featured: false
+            },
+            {
+                id: 40, title: "Technical Aspects of AI Certificate", institution: "University of California, San Diego (UCSD)", type: "certificate", level: "professional",
+                location: "Online", duration: "Varies", price: "Check Website", format: "Online",
+                description: "Certificate from UCSD Extended Studies covering technical AI concepts.",
+                url: "https://extendedstudies.ucsd.edu/certificates/technical-aspects-of-artificial-intelligence", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.6, onlineOnly: true, featured: false
+            },
+            {
+                id: 41, title: "Artificial Intelligence for Finance", institution: "University of California, San Diego (UCSD)", type: "courses", level: "professional",
+                location: "Online", duration: "Varies", price: "Check Website", format: "Online",
+                description: "Course from UCSD Extended Studies focusing on AI applications in the finance industry.",
+                url: "https://extendedstudies.ucsd.edu/courses-and-programs/artificial-intelligence-for-finance-cse-41349", category: "Research Universities",
+                forEducators: false, hasCertification: false, remoteAvailable: true, eveningClasses: true, rating: 4.5, onlineOnly: true, featured: false
+            },
+            {
+                id: 42, title: "AI/ML Research Areas", institution: "University of California, Irvine (UCI)", type: "overview", level: "various",
+                location: "Irvine", duration: "Varies", price: "Check Website", format: "In-person",
+                description: "Overview of UCI's research areas in AI, ML, and NLP, leading to faculty and labs.",
+                url: "https://ics.uci.edu/research-areas/ai-ml-and-natural-language-processing/", category: "Research Universities",
+                forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.7, onlineOnly: false, featured: false
+            },
+            {
+                id: 43, title: "M.Ed. in Education Sciences (AI & Learning Analytics)", institution: "University of California, Irvine (UCI)", type: "degree", level: "graduate",
+                location: "Irvine & Online", duration: "Approx. 2 Years", price: "Check Website", format: "Hybrid",
+                description: "Master's program focusing on AI applications in education and learning analytics.",
+                url: "https://education.uci.edu/mes_home", category: "Research Universities",
+                forEducators: true, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.6, onlineOnly: false, featured: false
+            },
+            {
+                id: 44, title: "Machine and Deep Learning Certificate", institution: "University of California, Irvine (UCI)", type: "certificate", level: "professional",
+                location: "Online", duration: "Varies", price: "Check Website", format: "Online",
+                description: "Continuing education certificate program focusing on machine learning and deep learning.",
+                url: "https://ce.uci.edu/programs/technology/machine-and-deep-learning/", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.5, onlineOnly: true, featured: false
+            },
+            {
+                id: 45, title: "UCSC Generative AI Center", institution: "University of California, Santa Cruz (UCSC)", type: "center", level: "various",
+                location: "Santa Cruz", duration: "N/A (Research)", price: "N/A", format: "In-person",
+                description: "Research center focused on Generative AI at UCSC.",
+                url: "https://genai.ucsc.edu/", category: "Research Universities",
+                forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.6, onlineOnly: false, featured: false
+            },
+            {
+                id: 46, title: "Humanizing Technology Certificate (Ethical AI, HCI, NLP)", institution: "University of California, Santa Cruz (UCSC)", type: "certificate", level: "professional",
+                location: "Online & Silicon Valley", duration: "Varies", price: "Check Website", format: "Hybrid",
+                description: "Certificate program focusing on the ethical and human aspects of technology, including AI, HCI, and NLP.",
+                url: "https://humanities.ucsc.edu/academics/hum-tech.html", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.5, onlineOnly: false, featured: false
+            },
+            {
+                id: 47, title: "AI Research at UCSF", institution: "University of California, San Francisco (UCSF)", type: "overview", level: "various",
+                location: "San Francisco", duration: "N/A (Research)", price: "N/A", format: "In-person",
+                description: "Overview of AI initiatives and research in health sciences at UCSF.",
+                url: "https://ai.ucsf.edu/", category: "Research Universities",
+                forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: false, rating: 4.9, onlineOnly: false, featured: false
+            },
+            {
+                id: 48, title: "M.S. in Artificial Intelligence and Computational Drug Discovery and Development (AICD3)", institution: "University of California, San Francisco (UCSF)", type: "degree", level: "graduate",
+                location: "San Francisco", duration: "1 Year", price: "Check Website", format: "In-person",
+                description: "Master's program applying AI techniques to drug discovery and development.",
+                url: "https://pharm.ucsf.edu/aicd3", category: "Research Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: false, rating: 4.9, onlineOnly: false, featured: false
+            },
+
+            // --- California State Universities ---
+            {
+                id: 49, title: "M.S. in Artificial Intelligence Program Overview", institution: "San José State University (SJSU)", type: "degree", level: "graduate",
+                location: "San Jose", duration: "Approx. 2 Years", price: "Check Website", format: "In-person",
+                description: "Overview of the Master of Science program in Artificial Intelligence offered by SJSU Professional Education.",
+                url: "https://www.sjsu.edu/professional/programs/artificial-intelligence-ms.php", category: "California State Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: true, rating: 4.6, onlineOnly: false, featured: false
+            },
+            {
+                id: 50, title: "Official Program Catalog Entry (MS AI SJSU)", institution: "San José State University (SJSU)", type: "degree", level: "graduate",
+                location: "San Jose", duration: "Approx. 2 Years", price: "Check Website", format: "In-person",
+                description: "Official catalog entry for the MS in Artificial Intelligence program at SJSU.",
+                url: "https://catalog.sjsu.edu/preview_program.php?catoid=17&poid=14074", category: "California State Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: true, rating: 4.6, onlineOnly: false, featured: false
+            },
+            {
+                id: 51, title: "M.S. in Data Science and Artificial Intelligence", institution: "San Francisco State University (SFSU)", type: "degree", level: "graduate",
+                location: "San Francisco", duration: "Approx. 2 Years", price: "Check Website", format: "In-person",
+                description: "Master's program combining data science principles with AI techniques.",
+                url: "https://bulletin.sfsu.edu/colleges/science-engineering/computer-science/ms-data-science-artificial-intelligence/", category: "California State Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: true, rating: 4.5, onlineOnly: false, featured: false
+            },
+            {
+                id: 52, title: "AI/ML Course Offerings", institution: "San Francisco State University (SFSU)", type: "courses", level: "various",
+                location: "San Francisco", duration: "Varies per course", price: "Check Website", format: "In-person",
+                description: "Information on AI/ML courses offered within SFSU's computer science department.",
+                url: "https://cs.sfsu.edu/artificial-intelligencemachine-learning", category: "California State Universities",
+                forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: true, rating: 4.4, onlineOnly: false, featured: false
+            },
+            {
+                id: 53, title: "Graduate Certificate in Ethical AI", institution: "San Francisco State University (SFSU)", type: "certificate", level: "graduate",
+                location: "San Francisco & Online", duration: "Varies", price: "Check Website", format: "Hybrid",
+                description: "Graduate certificate focusing on the ethical considerations and implications of AI.",
+                url: "https://philosophy.sfsu.edu/graduate-certificate", category: "California State Universities",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.5, onlineOnly: false, featured: false
+            },
+
+            // --- Private Institutions ---
+            {
+                id: 54, title: "Overview of AI Programs (CIAT)", institution: "California Institute of Applied Technology (CIAT)", type: "courses", level: "professional", 
+                location: "Online & Various CA", duration: "Varies", price: "Check Website", format: "Hybrid",
+                description: "CIAT offers various programs focusing on AI, including degree and certificate options.",
+                url: "https://www.ciat.edu/programs/artificial-intelligence", category: "Private Institutions",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.3, onlineOnly: false, featured: false
+            },
+            {
+                id: 55, title: "Certificate in AI and Machine Learning (CIAT)", institution: "California Institute of Applied Technology (CIAT)", type: "certificate", level: "professional",
+                location: "Online & Various CA", duration: "Varies", price: "Check Website", format: "Hybrid",
+                description: "Certificate program focused on AI and Machine Learning skills.",
+                url: "https://www.ciat.edu/programs/artificial-intelligence/caiml", category: "Private Institutions",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.3, onlineOnly: false, featured: false
+            },
+            {
+                id: 56, title: "M.S. in Artificial Intelligence (CMU)", institution: "California Miramar University", type: "degree", level: "graduate",
+                location: "San Diego & Online", duration: "Approx. 18-24 Months", price: "Check Website", format: "Hybrid",
+                description: "Master's degree program focused on Artificial Intelligence principles and applications.",
+                url: "https://www.calmu.edu/master-of-artificial-intelligence", category: "Private Institutions",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.2, onlineOnly: false, featured: false
+            },
+            {
+                id: 57, title: "B.S. in Business Administration – AI Concentration (CMU)", institution: "California Miramar University", type: "degree", level: "undergraduate",
+                location: "San Diego & Online", duration: "4 Years", price: "Check Website", format: "Hybrid",
+                description: "BSBA program with a specialization in Artificial Intelligence.",
+                url: "https://www.calmu.edu/bachelor-of-science-in-business-administration-artificial-intelligence", category: "Private Institutions",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.1, onlineOnly: false, featured: false
+            },
+            {
+                id: 58, title: "Short-Term Certificate in Artificial Intelligence (CMU)", institution: "California Miramar University", type: "certificate", level: "professional",
+                location: "Online", duration: "Varies (Short-term)", price: "Check Website", format: "Online",
+                description: "Short-term certificate options in AI for focused skill development.",
+                url: "https://www.calmu.edu/certificate-artificial-intelligence", category: "Private Institutions",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.0, onlineOnly: true, featured: false
+            },
+            {
+                id: 59, title: "Emerging Technologies – AI & Cybersecurity Program (CSTU)", institution: "California Science and Technology University (CSTU)", type: "courses", level: "professional",
+                location: "Milpitas & Online", duration: "Varies", price: "Check Website", format: "Hybrid",
+                description: "Training programs in emerging technologies, including AI and Cybersecurity related topics.",
+                url: "https://www.cstu.edu/pages/index/courses/et.html?v=f31afab496", category: "Private Institutions",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.1, onlineOnly: false, featured: false
+            },
+
+            // --- Community Colleges ---
+            {
+                id: 60, title: "AI and Data Science Certificates & Degrees", institution: "Mission College", type: "certificate", 
+                level: "intermediate", 
+                location: "Santa Clara", duration: "Approx. 1-2 Years", price: "$46/unit (CA Resident)", format: "Hybrid",
+                description: "Offers certificates and degrees in AI and Data Science.",
+                url: "https://missioncollege.edu/depts/computer-science/degrees-certs-program-maps.html", category: "Community Colleges",
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.2, onlineOnly: false, featured: false
+            },
+            {
+                id: 61, title: "Artificial Intelligence – Course Offering in Computer Science", institution: "Santa Ana College", type: "courses", level: "various",
+                location: "Santa Ana", duration: "Varies per course", price: "$46/unit (CA Resident)", format: "In-person",
+                description: "Computer Science department offering various courses, including AI topics.",
+                url: "https://sac.edu/AcademicProgs/Business/ComputerScience/Pages/default.aspx", category: "Community Colleges",
+                forEducators: false, hasCertification: false, remoteAvailable: false, eveningClasses: true, rating: 4.1, onlineOnly: false, featured: false
+            },
+            {
+                id: 62, title: "A.S. in Artificial Intelligence for Business", institution: "Mt. San Antonio College (Mt. SAC)", type: "degree", level: "undergraduate",
+                location: "Walnut", duration: "2 Years", price: "$46/unit (CA Resident)", format: "In-person",
+                description: "Associate of Science degree focusing on AI applications in business.",
+                url: "https://catalog.mtsac.edu/programs/programsaz/artificial-intelligence-business-degree/", category: "Community Colleges",
+                forEducators: false, hasCertification: true, remoteAvailable: false, eveningClasses: true, rating: 4.3, onlineOnly: false, featured: false
+            },
+            {
+                id: 63, title: "Certificate in Artificial Intelligence in Business", institution: "Mt. San Antonio College (Mt. SAC)", type: "certificate", level: "intermediate",
+                location: "Walnut & Online", duration: "Approx. 1 Year", price: "$46/unit (CA Resident)", format: "Hybrid",
+                description: "Certificate program focusing on Artificial Intelligence concepts and applications in business.",
+                url: "https://catalog.mtsac.edu/programs/programsaz/artificial-intelligence/", category: "Community Colleges", 
+                forEducators: false, hasCertification: true, remoteAvailable: true, eveningClasses: true, rating: 4.3, onlineOnly: false, featured: false
+            }
+        ];
+
+        let currentDisplayedPrograms = [];
+        let activeFilters = new Set();
+
+        window.onload = function() {
+            currentDisplayedPrograms = [...allSamplePrograms];
+            document.getElementById('sort').value = 'title-asc'; 
+            sortAndDisplayPrograms(currentDisplayedPrograms); 
+            updateResultsCount(currentDisplayedPrograms.length);
+        };
+        
+        function filterAndDisplayPrograms() {
+            const locationQuery = document.getElementById('location').value.toLowerCase();
+            const programTypeQuery = document.getElementById('program-type').value;
+            const levelQuery = document.getElementById('level').value;
+
+            let filtered = allSamplePrograms.filter(program => {
+                let matches = true;
+                if (locationQuery && !(program.location.toLowerCase().includes(locationQuery) || program.institution.toLowerCase().includes(locationQuery))) {
+                    matches = false;
+                }
+                if (programTypeQuery && program.type !== programTypeQuery) matches = false;
+                if (levelQuery && program.level !== levelQuery) matches = false;
+
+                if (activeFilters.has('educators') && !program.forEducators) matches = false;
+                if (activeFilters.has('free')) { 
+                    const price = program.price.toLowerCase();
+                    if (!(price.includes('free') || (price.includes('/unit') && parseFloat(price.replace(/[^0-9.]/g, '')) <= 46))) {
+                         matches = false;
+                    }
+                }
+                if (activeFilters.has('onlineOnly') && !program.onlineOnly) matches = false;
+                if (activeFilters.has('evening') && !program.eveningClasses) matches = false;
+                
+                return matches;
+            });
+            
+            currentDisplayedPrograms = filtered;
+            sortAndDisplayPrograms(currentDisplayedPrograms);
+            updateResultsCount(filtered.length);
+        }
+
+        function toggleFilter(chip, filter) {
+            const isActive = chip.classList.contains('active');
+            if (isActive) {
+                chip.classList.remove('active');
+                chip.setAttribute('aria-pressed', 'false');
+                activeFilters.delete(filter);
+            } else {
+                chip.classList.add('active');
+                chip.setAttribute('aria-pressed', 'true');
+                activeFilters.add(filter);
+            }
+            filterAndDisplayPrograms();
+        }
+
+        function getPriceValue(priceStr) {
+            if (typeof priceStr !== 'string') return Infinity;
+            const lowerPriceStr = priceStr.toLowerCase();
+            if (lowerPriceStr.includes('free')) return 0;
+            if (lowerPriceStr.includes('check website') || lowerPriceStr.includes('varies per course') || lowerPriceStr.includes('varies')) return Infinity; 
+
+            if (lowerPriceStr.includes('/unit')) {
+                 const unitCost = parseFloat(lowerPriceStr.match(/(\d+(\.\d+)?)\s*\/unit/)?.[1]);
+                 return isNaN(unitCost) ? 50 : unitCost; 
+            }
+            
+            const numbers = lowerPriceStr.match(/\$?(\d{1,3}(,\d{3})*(\.\d+)?)/g);
+            if (numbers) {
+                const primaryCost = parseFloat(numbers[0].replace(/[$,]/g, ''));
+                return isNaN(primaryCost) ? Infinity : primaryCost;
+            }
+            return Infinity;
+        }
+
+        function getDurationValue(durationStr) { 
+            if (typeof durationStr !== 'string') return Infinity;
+            const lowerStr = durationStr.toLowerCase();
+            let value = Infinity;
+            let multiplier = 1;
+
+            if (lowerStr.includes("n/a")) return Infinity;
+
+
+            const match = lowerStr.match(/(\d+(\.\d+)?(-(\d+(\.\d+)?))?)\s*(lesson|week|month|quarter|year|course)/);
+
+            if (match) {
+                let numPart = match[1];
+                if (numPart.includes('-')) { 
+                    const parts = numPart.split('-');
+                    numPart = parseFloat(parts[0]); 
+                } else {
+                    numPart = parseFloat(numPart);
+                }
+
+                const unit = match[match.length -1 ]; 
+
+                if (unit.startsWith('lesson')) multiplier = 0.25; 
+                else if (unit.startsWith('week')) multiplier = 1;
+                else if (unit.startsWith('month')) multiplier = 4.33;
+                else if (unit.startsWith('quarter')) multiplier = 12; 
+                else if (unit.startsWith('year')) multiplier = 52;
+                else if (unit.startsWith('course')) multiplier = 8; 
+                value = numPart * multiplier;
+            } else if (lowerStr.match(/\d+\s*lessons/)) { 
+                 const num = parseInt(lowerStr);
+                 if (!isNaN(num)) value = num * 0.25;
+            }
+            return value;
+        }
+
+        function sortAndDisplayPrograms(programsToSortInput) {
+            const programsToSort = programsToSortInput ? [...programsToSortInput] : [...currentDisplayedPrograms];
+            const sortValue = document.getElementById('sort').value;
+            
+            switch(sortValue) {
+                case 'title-asc':
+                    programsToSort.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'title-desc':
+                    programsToSort.sort((a, b) => b.title.localeCompare(a.title));
+                    break;
+                case 'price-low':
+                    programsToSort.sort((a, b) => getPriceValue(a.price) - getPriceValue(b.price));
+                    break;
+                case 'price-high':
+                    programsToSort.sort((a, b) => getPriceValue(b.price) - getPriceValue(a.price));
+                    break;
+                case 'duration':
+                    programsToSort.sort((a, b) => getDurationValue(a.duration) - getDurationValue(b.duration));
+                    break;
+                case 'rating':
+                    programsToSort.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+                    break;
+                case 'relevance': 
+                default:
+                    programsToSort.sort((a, b) => {
+                        if (a.featured && !b.featured) return -1;
+                        if (!a.featured && b.featured) return 1;
+                        if ((b.rating || 0) !== (a.rating || 0)) return (b.rating || 0) - (a.rating || 0);
+                        return a.title.localeCompare(b.title);
+                    });
+                    break;
+            }
+            currentDisplayedPrograms = programsToSort; 
+            displayPrograms(programsToSort);
+        }
+
+        function displayPrograms(programs) {
+            const grid = document.getElementById('results-grid');
+            if (!grid) return;
+
+            if (programs.length === 0) {
+                grid.innerHTML = `<div class="no-results"><h3>No programs found</h3><p>Try adjusting your search criteria or filters.</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = programs.map(program => `
+                <article class="program-card ${program.featured ? 'featured' : ''}" role="listitem" tabindex="0">
+                    <div>
+                        <div class="program-header">
+                            <div>
+                                <h3 class="program-title">
+                                    ${program.title}
+                                    ${program.featured && (program.institution === 'Eduvators Team') ? '<span class="featured-badge">Eduvators Pick</span>' : ''}
+                                </h3>
+                                <p class="program-institution">${program.institution}</p>
+                            </div>
+                            <span class="program-type">${program.type}</span>
+                        </div>
+                        <div class="program-details">
+                            <div class="detail-item"><span class="icon" aria-hidden="true">📍</span> <span>${program.location}</span></div>
+                            <div class="detail-item"><span class="icon" aria-hidden="true">⏱️</span> <span>${program.duration}</span></div>
+                            <div class="detail-item"><span class="icon" aria-hidden="true">💵</span> <span>${program.price}</span></div>
+                            <div class="detail-item"><span class="icon" aria-hidden="true">🖥️</span> <span>${program.format}</span></div>
+                        </div>
+                        <p class="program-description">${program.description}</p>
+                    </div>
+                    <div class="program-footer">
+                        <div class="detail-item"><span class="icon" aria-hidden="true">⭐</span> <span>${program.rating ? program.rating+'/5.0' : 'N/A'}</span></div>
+                        <a href="${program.url || '#'}" target="_blank" rel="noopener noreferrer">Learn More <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function updateResultsCount(count) {
+            const countElement = document.getElementById('results-count');
+            countElement.textContent = `${count} Program${count === 1 ? '' : 's'} Found`;
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('chip')) {
+                e.target.click();
+            }
+        });
+    </script>
+</body>
+</html>
